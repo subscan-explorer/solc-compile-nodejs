@@ -25,7 +25,7 @@ module.exports = {
         solc = solc.setupMethods(require(util.format("../static/soljson-%s.js", compilerVersion)))
         let settings = {
             optimizer: {
-                enabled: optimize === true, runs: optimizationRuns
+                enabled: optimize === true, runs: parseInt(optimizationRuns)
             }, // https://docs.soliditylang.org/en/develop/using-the-compiler.html#library-linking
             outputSelection: {
                 '*': {
