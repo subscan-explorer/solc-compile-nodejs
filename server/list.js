@@ -99,5 +99,5 @@ const soljsonReleases = {
 
 // todo auto refresh solidity js
 if (typeof (module) !== 'undefined') module.exports = {
-    'allVersions': soljsonSources, 'releases': soljsonReleases
+    'allVersions': soljsonSources, 'releases': Object.values(soljsonReleases)
 };
