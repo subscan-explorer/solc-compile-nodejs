@@ -1,0 +1,7 @@
+venv
+.idea
+node_modules
+yarn-error.log
+
+/.git
+/static

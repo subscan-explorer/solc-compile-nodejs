@@ -1,6 +1,5 @@
 FROM node:17-slim
 
-RUN mkdir /app
 COPY . /app
 WORKDIR /app
 
