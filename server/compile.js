@@ -64,7 +64,7 @@ module.exports = {
      * @param compilerVersion compiler version
      */
     async downloadIfNotExist(compilerVersion) {
-        if (fs.existsSync(util.format("../static/soljson-%s.js", compilerVersion))) {
+        if (fs.existsSync(util.format("./static/soljson-%s.js", compilerVersion))) {
         } else {
             let downloadPath = util.format("https://solc-bin.ethereum.org/bin/soljson-%s.js", compilerVersion)
             await get(downloadPath, {
