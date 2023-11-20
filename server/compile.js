@@ -33,9 +33,7 @@ module.exports = {
                 }
             }
         }
-        if (optimize === true) {
-            settings.optimizer.runs = parseInt(optimizationRuns)
-        }
+        settings.optimizer.runs = parseInt(optimizationRuns)
         if (externalLibraries !== undefined) {
             settings = Object.assign(settings, {
                 libraries: {
@@ -64,9 +62,10 @@ module.exports = {
      * @param compilerVersion compiler version
      */
     async downloadIfNotExist(compilerVersion) {
+        console.log("compilerVersion", compilerVersion)
         if (fs.existsSync(util.format("./static/soljson-%s.js", compilerVersion))) {
         } else {
-            let downloadPath = util.format("https://solc-bin.ethereum.org/bin/soljson-%s.js", compilerVersion)
+            let downloadPath = util.format("https://solc-bin.etchereum.org/bin/soljson-%s.js", compilerVersion)
             await get(downloadPath, {
                 directory: "./static/", filename: util.format("soljson-%s.js", compilerVersion)
             }).catch(err => {
