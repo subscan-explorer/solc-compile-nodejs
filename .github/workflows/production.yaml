@@ -32,6 +32,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
+          push: true
           tags: quay.io/subscan-explorer/solc-compile-nodejs:sha-${{ env.SHA }}-${{ github.run_number }}
           labels: ${{ steps.meta.outputs.labels }}
 
