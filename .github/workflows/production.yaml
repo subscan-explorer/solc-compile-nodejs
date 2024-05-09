@@ -23,9 +23,23 @@ jobs:
           password: ${{ secrets.QUAY_IO_BOT_PASSWORD }}
           registry: quay.io
 
-      - uses: ./.github/actions/docker-build-deploy
+      - uses: benjlevesque/short-sha@v1.2
+        id: short-sha
         with:
-          deploy_phase: production
-          docker_registry: quay.io
-          trigger_token: ${{ secrets.ITERING_DEPLOYMENT_TRIGGER_TOKEN }}
-          trigger_endpoint: ${{ secrets.ITERING_DEPLOYMENT_TRIGGER_ENDPOINT }}
+          length: 7
+
+      - name: Build And Push
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          tags: quay.io/subscan-explorer/solc-compile-nodejs:${{ env.SHA }}-${{ github.run_number }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+      - uses: 8398a7/action-slack@v3
+        if: failure()
+        with:
+          status: ${{ job.status }}
+          fields: repo,author,eventName,workflow,ref,commit
+          channel: ${{ secrets.SLACK_CHANNEL_ID }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_INCOMING_WEBHOOK_URL }}
