@@ -32,7 +32,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          tags: quay.io/subscan-explorer/solc-compile-nodejs:${{ env.SHA }}-${{ github.run_number }}
+          tags: quay.io/subscan-explorer/solc-compile-nodejs:sha-${{ env.SHA }}-${{ github.run_number }}
           labels: ${{ steps.meta.outputs.labels }}
 
       - uses: 8398a7/action-slack@v3
